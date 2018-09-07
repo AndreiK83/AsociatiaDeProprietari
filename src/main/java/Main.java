@@ -37,8 +37,8 @@ public class Main {
 
         AsociatiaDeProprietari asocProp = AsociatiaDeProprietari.getAsociatiaDeProprietari(apartamentList, "ROBNRIBAN");
 
-        asocProp.registerLocatar(apartament1, locatar1);
-        asocProp.registerLocatar(apartament2, locatar2);
+        app.insert(asocProp.registerLocatar(apartament1, locatar1));
+        app.insert(asocProp.registerLocatar(apartament2, locatar2));
 
         asocProp.unregisterLocatar(apartament1, locatar1);
 

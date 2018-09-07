@@ -34,8 +34,7 @@ public class Locatar implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Locatar locatar = (Locatar) o;
-        return Objects.equals(id, locatar.id) &&
-                Objects.equals(nume, locatar.nume) &&
+        return  Objects.equals(nume, locatar.nume) &&
                 Objects.equals(email, locatar.email) &&
                 Objects.equals(cnp, locatar.cnp) &&
                 Objects.equals(ap, locatar.ap);

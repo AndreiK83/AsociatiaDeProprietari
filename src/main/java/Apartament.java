@@ -41,10 +41,16 @@ public class Apartament implements Serializable {
     }
 
     public void removeLoc(Locatar loc){
-        if (locatari.equals(loc)){
+        if (locatari.isEmpty()){
+            System.out.println("Apartamentul este gol");
+        }
+        if (locatari.contains(loc)){
             locatari.remove(loc);
             loc.setAp(this);
             System.out.println("Lista de locatari este "+locatari);
+        }
+        else {
+            System.out.println("Nu exista astfel de locatar");
         }
     }
 
