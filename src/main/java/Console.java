@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -6,6 +7,7 @@ public class Console extends Main {
     private String prompt;
     AsociatiaDeProprietari asocProp;
     List<Apartament> apartamentList;
+    Apartament apartament;
 
     public Console() {
         sc = new Scanner(System.in);
@@ -42,13 +44,14 @@ public class Console extends Main {
             prompt = ">";
             switch (drawCategoryMenu()) {
                 case 1:
+                    drawAddOrRemouveApartments();
                     addOrRemouveApartments();
                     break;
                 case 2:
-                    addOrRemouveLocatari();
+                    drawAddOrRemouveLocatari();
                     break;
                 case 3:
-                    addOrRemouveContor();
+                    drawAddOrRemouveContor();
                     break;
                 case 4:
                     return;
@@ -56,6 +59,14 @@ public class Console extends Main {
                     System.out.println("Nu exista o astfel de optiune");
             }
         }
+    }
+
+    private void addOrRemouveApartments() {
+        Integer nrApartament;
+        nrApartament = sc.nextInt();
+        List<Contor> contorList = new ArrayList<>();
+        apartament = new Apartament(nrApartament, contorList);
+        apartamentList.add(apartament);
     }
 
     public Integer drawMainMenu() {
@@ -81,7 +92,7 @@ public class Console extends Main {
         return option;
     }
 
-    private Integer addOrRemouveApartments() {
+    private Integer drawAddOrRemouveApartments() {
         System.out.println("1. Adauga apartament");
         System.out.println("2. Sterge apartament");
         System.out.println("3. Return");
@@ -91,7 +102,7 @@ public class Console extends Main {
         return option;
     }
 
-    private Integer addOrRemouveLocatari() {
+    private Integer drawAddOrRemouveLocatari() {
         System.out.println("1. Adauga locatar");
         System.out.println("2. Sterge locatar");
         System.out.println("3. Return");
@@ -101,7 +112,7 @@ public class Console extends Main {
         return option;
     }
 
-    private Integer addOrRemouveContor() {
+    private Integer drawAddOrRemouveContor() {
         System.out.println("1. Adauga contor");
         System.out.println("2. Sterge locatar");
         System.out.println("3. Return");
