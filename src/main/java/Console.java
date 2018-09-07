@@ -32,7 +32,7 @@ public class Console extends Main {
                 case 3:
                     return;
                 default:
-                    System.out.println("Nu exista asa optiune");
+                    System.out.println("Nu exista o astfel de optiune");
             }
         }
     }
