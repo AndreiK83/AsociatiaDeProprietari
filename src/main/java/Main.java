@@ -13,8 +13,8 @@ public class Main {
         Contor ap2c2 = new Contor("Bucatarie", 1, Contor.ContorType.APA_CALDA);
         Contor ap2c3 = new Contor("Tancodrom", 1, Contor.ContorType.APA_RECE);
 
-        List<Contor> listContoareAp1 = new ArrayList<Contor>();
-        List<Contor> listContoareAp2 = new ArrayList<Contor>();
+        List<Contor> listContoareAp1 = new ArrayList<>();
+        List<Contor> listContoareAp2 = new ArrayList<>();
 
         listContoareAp1.add(ap1c1);
         listContoareAp1.add(ap1c2);
@@ -40,12 +40,9 @@ public class Main {
         app.insert(asocProp.registerLocatar(apartament1, locatar1));
         app.insert(asocProp.registerLocatar(apartament2, locatar2));
 
-        asocProp.unregisterLocatar(apartament1, locatar1);
+        app.insert(asocProp.unregisterLocatar(apartament1, locatar1));
 
-//        app.insert(locatar1);``
-//        app.insert(locatar2);
-//
-//        app.getAll(Locatar.class);
+
 
 
 //        List<Locatar> locatarList = new ArrayList<Locatar>();
