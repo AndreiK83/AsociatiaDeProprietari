@@ -40,7 +40,12 @@ public class Main {
         asocProp.registerLocatar(apartament1, locatar1);
         asocProp.registerLocatar(apartament2, locatar2);
 
+        asocProp.unregisterLocatar(apartament1, locatar1);
 
+//        app.insert(locatar1);``
+//        app.insert(locatar2);
+//
+//        app.getAll(Locatar.class);
 
 
 //        List<Locatar> locatarList = new ArrayList<Locatar>();

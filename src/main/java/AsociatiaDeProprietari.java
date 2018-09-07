@@ -27,4 +27,9 @@ public class AsociatiaDeProprietari {
         ap.addLoc(loc);
         return ap;
     }
+
+    public Apartament unregisterLocatar(Apartament ap, Locatar loc){
+        ap.removeLoc(loc);
+        return ap;
+    }
 }

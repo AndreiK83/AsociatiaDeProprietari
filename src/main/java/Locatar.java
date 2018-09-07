@@ -1,5 +1,6 @@
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Entity
 
@@ -26,6 +27,24 @@ public class Locatar implements Serializable {
 
     public void setAp(Apartament ap) {
         this.ap = ap;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Locatar locatar = (Locatar) o;
+        return Objects.equals(id, locatar.id) &&
+                Objects.equals(nume, locatar.nume) &&
+                Objects.equals(email, locatar.email) &&
+                Objects.equals(cnp, locatar.cnp) &&
+                Objects.equals(ap, locatar.ap);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id, nume, email, cnp, ap);
     }
 
     @Override
