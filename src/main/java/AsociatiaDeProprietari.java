@@ -7,7 +7,7 @@ public class AsociatiaDeProprietari {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "asc")
     private List<Apartament> apartamentList;
     @Column
     private final String IBAN;

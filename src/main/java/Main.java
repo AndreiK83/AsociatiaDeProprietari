@@ -14,6 +14,7 @@ public class Main {
         Contor ap2c2 = new Contor("Bucatarie", 1, Contor.ContorType.APA_CALDA);
         Contor ap2c3 = new Contor("Tancodrom", 1, Contor.ContorType.APA_RECE);
 
+
         List<Contor> listContoareAp1 = new ArrayList<>();
         List<Contor> listContoareAp2 = new ArrayList<>();
 

@@ -15,6 +15,8 @@ public class Apartament implements Serializable {
     private List<Locatar> locatari;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "ap")
     private List<Contor> contoare;
+    @ManyToOne
+    private AsociatiaDeProprietari asc;
 
     public Apartament() {
 
