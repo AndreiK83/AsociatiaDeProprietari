@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class Console extends Main {
     HibernateLocatari app = new HibernateLocatari();
     private Scanner sc;
-    //    private String prompt;
     AsociatiaDeProprietari asocProp;
     List<Apartament> apartamentList;
     Apartament apartament;
@@ -17,7 +16,6 @@ public class Console extends Main {
 
     private void mainMenu() {
         while (true) {
-//            System.out.println(prompt);
             switch (drawMainMenu()) {
                 case 1:
                     categories();
@@ -44,7 +42,6 @@ public class Console extends Main {
 
     private void categories() {
         while (true) {
-//            prompt = ">";
             switch (drawCategoryMenu()) {
                 case 1:
                     addOrRemouveApartments();
@@ -136,8 +133,6 @@ public class Console extends Main {
         locatie = sc.nextLine();
         System.out.println("Introduceti indexul contorului:");
         contorIndex = sc.nextInt();
-
-
         Contor contor = new Contor(locatie, contorIndex, enumConorType());
     }
 
@@ -168,7 +163,6 @@ public class Console extends Main {
         System.out.println("3. Exit");
         System.out.println();
         System.out.println("Alegeti optiunile de mai sus.");
-//        System.out.print(prompt);
         Integer optiune = sc.nextInt();
         sc.nextLine();
         return optiune;
@@ -179,7 +173,6 @@ public class Console extends Main {
         System.out.println("2. Locatari");
         System.out.println("3. Contoare");
         System.out.println("4. Return");
-//        System.out.print(prompt);
         Integer option = sc.nextInt();
         sc.nextLine();
         return option;
@@ -189,7 +182,6 @@ public class Console extends Main {
         System.out.println("1. Adauga apartament");
         System.out.println("2. Sterge apartament");
         System.out.println("3. Return");
-//        System.out.print(prompt);
         Integer option = sc.nextInt();
         sc.nextLine();
         return option;
@@ -199,7 +191,6 @@ public class Console extends Main {
         System.out.println("1. Adauga locatar");
         System.out.println("2. Sterge locatar");
         System.out.println("3. Return");
-//        System.out.print(prompt);
         Integer option = sc.nextInt();
         sc.nextLine();
         return option;
@@ -209,7 +200,6 @@ public class Console extends Main {
         System.out.println("1. Adauga contor");
         System.out.println("2. Sterge locatar");
         System.out.println("3. Return");
-//        System.out.print(prompt);
         Integer option = sc.nextInt();
         sc.nextLine();
         return option;
@@ -219,7 +209,6 @@ public class Console extends Main {
         System.out.println("1. GAZ");
         System.out.println("2. APA_CALDA");
         System.out.println("3. APA_RECE");
-//        System.out.print(prompt);
         Integer option = sc.nextInt();
         sc.nextLine();
         return option;
