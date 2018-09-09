@@ -15,5 +15,6 @@
         <mapping class="Locatar"/>
         <mapping class="Apartament"/>
         <mapping class="Contor"/>
+        <mapping class="AsociatiaDeProprietari"/>
     </session-factory>
 </hibernate-configuration>

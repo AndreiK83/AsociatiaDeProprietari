@@ -11,7 +11,7 @@ public class Contor implements Serializable {
     @Column(nullable = false)
     private String locatie;
     @Column(nullable = false, name = "contor_index")
-    private Integer index;
+    private Integer contorIndex;
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private ContorType type;
@@ -21,9 +21,9 @@ public class Contor implements Serializable {
     public Contor() {
     }
 
-    public Contor(String locatie, Integer index, ContorType type) {
+    public Contor(String locatie, Integer contorIndex, ContorType type) {
         this.locatie = locatie;
-        this.index = index;
+        this.contorIndex = contorIndex;
         this.type = type;
     }
 
@@ -36,7 +36,7 @@ public class Contor implements Serializable {
         return "Contor{" +
                 "id=" + id +
                 ", locatie='" + locatie + '\'' +
-                ", index=" + index +
+                ", index=" + contorIndex +
                 ", type=" + type +
                 '}';
     }

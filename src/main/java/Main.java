@@ -3,6 +3,7 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
+        Main m = new Console();
         HibernateLocatari app = new HibernateLocatari();
 
         Contor ap1c1 = new Contor("Baie", 0, Contor.ContorType.GAZ);
@@ -35,14 +36,16 @@ public class Main {
         Locatar locatar1 = new Locatar("1234567891234", "Iliescu", "iliescu@mail.com");
         Locatar locatar2 = new Locatar("9874561237895", "Dragnea", "dragnea@mail.com");
 
-        AsociatiaDeProprietari asocProp = AsociatiaDeProprietari.getAsociatiaDeProprietari(apartamentList, "ROBNRIBAN");
+        AsociatiaDeProprietari asocProp = new AsociatiaDeProprietari(apartamentList, "ROBNRIBAN");
 
         app.insert(asocProp.registerLocatar(apartament1, locatar1));
-        app.insert(asocProp.registerLocatar(apartament2, locatar2));
+        app.insert(asocProp.registerLocatar(apartament1, locatar2));
 
-        app.insert(asocProp.unregisterLocatar(apartament1, locatar1));
+        // Pare ca inseram un apartament cand de fapt daca apartamentul exista aici se va face un update
+//        app.insert(asocProp.unregisterLocatar(locatar1));
 
-
+        //Pentru optiundea de creare de asociatie noua: app.insert(nouaAsociatie)
+        //Pentru optiunea de modificare asociatie ai nevoie sa scoti asociatia din baza de date: app.getAll
 
 
 //        List<Locatar> locatarList = new ArrayList<Locatar>();

@@ -19,6 +19,10 @@ public class Locatar implements Serializable {
     private Apartament ap;
 
 
+    public Locatar(){
+
+    }
+
     public Locatar(String cnp, String nume, String email) {
         this.cnp = cnp;
         this.nume = nume;
