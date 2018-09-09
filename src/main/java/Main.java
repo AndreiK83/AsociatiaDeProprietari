@@ -42,7 +42,7 @@ public class Main {
         app.insert(asocProp.registerLocatar(apartament1, locatar2));
 
         // Pare ca inseram un apartament cand de fapt daca apartamentul exista aici se va face un update
-//        app.insert(asocProp.unregisterLocatar(locatar1));
+        app.insert(asocProp.unregisterLocatar(locatar1));
 
         //Pentru optiundea de creare de asociatie noua: app.insert(nouaAsociatie)
         //Pentru optiunea de modificare asociatie ai nevoie sa scoti asociatia din baza de date: app.getAll

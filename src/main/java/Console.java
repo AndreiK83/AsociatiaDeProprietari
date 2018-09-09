@@ -91,7 +91,7 @@ public class Console extends Main {
     private void remouveApartment() {
     }
 
-    public void addOrRemouveLocatari(){
+    public void addOrRemouveLocatari() {
         while (true) {
             switch (drawAddOrRemouveLocatari()) {
                 case 1:
@@ -113,7 +113,7 @@ public class Console extends Main {
     private void addLocatar() {
     }
 
-    public void addOrRemouveContor(){
+    public void addOrRemouveContor() {
         while (true) {
             switch (drawAddOrRemouveContor()) {
                 case 1:
@@ -130,6 +130,31 @@ public class Console extends Main {
     }
 
     private void addContor() {
+        String locatie;
+        Integer contorIndex;
+        System.out.println("Introduceti locatia contorului:");
+        locatie = sc.nextLine();
+        System.out.println("Introduceti indexul contorului:");
+        contorIndex = sc.nextInt();
+
+
+        Contor contor = new Contor(locatie, contorIndex, enumConorType());
+    }
+
+    public Contor.ContorType enumConorType() {
+        System.out.println("Introduceti tipul contorului:");
+        while (true) {
+            switch (drawAlegeTipContor()) {
+                case 1:
+                    return Contor.ContorType.GAZ;
+                case 2:
+                    return Contor.ContorType.APA_CALDA;
+                case 3:
+                    return Contor.ContorType.APA_RECE;
+                default:
+                    System.out.println("Alegeti optiunea corecta.");
+            }
+        }
     }
 
     private void remouveContor() {
@@ -184,6 +209,16 @@ public class Console extends Main {
         System.out.println("1. Adauga contor");
         System.out.println("2. Sterge locatar");
         System.out.println("3. Return");
+//        System.out.print(prompt);
+        Integer option = sc.nextInt();
+        sc.nextLine();
+        return option;
+    }
+
+    private Integer drawAlegeTipContor() {
+        System.out.println("1. GAZ");
+        System.out.println("2. APA_CALDA");
+        System.out.println("3. APA_RECE");
 //        System.out.print(prompt);
         Integer option = sc.nextInt();
         sc.nextLine();
