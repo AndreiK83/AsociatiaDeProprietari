@@ -34,10 +34,6 @@ public class Apartament implements Serializable {
 
 
     public void addLoc(Locatar loc) {
-        //nullpointer exception apare la linia urmatoare pentru ca lista de locatari este egala cu null. Dovada:
-
-        //Lista cu locatari ar trebui sa fie in acest punct o lista goala
-        //Daca am construi lista in constructor atunci problema asta s-ar rezolvat
         locatari.add(loc);
         loc.setAp(this);
         System.out.println("Lista de locatari este " + locatari);

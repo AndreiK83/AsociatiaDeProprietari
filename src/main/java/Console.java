@@ -92,7 +92,7 @@ public class Console extends Main {
         while (true) {
             switch (drawAddOrRemouveLocatari()) {
                 case 1:
-                    addLocatar();
+//                    addLocatar();
                     break;
                 case 2:
                     remouveLocatar();

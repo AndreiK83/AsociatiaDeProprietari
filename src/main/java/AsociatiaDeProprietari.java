@@ -38,6 +38,7 @@ public class AsociatiaDeProprietari {
         return ap;
     }
 
+
     public Apartament unregisterLocatar(Locatar loc) {
 
         // pentru fiecare apartament din bloc
