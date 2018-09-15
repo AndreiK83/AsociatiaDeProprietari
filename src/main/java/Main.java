@@ -4,46 +4,49 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         Main m = new Console();
-        HibernateLocatari app = new HibernateLocatari();
-
-        Contor ap1c1 = new Contor("Baie", 0, Contor.ContorType.GAZ);
-        Contor ap1c2 = new Contor("Bucatarie", 0, Contor.ContorType.APA_CALDA);
-        Contor ap1c3 = new Contor("Tancodrom", 0, Contor.ContorType.APA_RECE);
-
-        Contor ap2c1 = new Contor("Baie", 1, Contor.ContorType.GAZ);
-        Contor ap2c2 = new Contor("Bucatarie", 1, Contor.ContorType.APA_CALDA);
-        Contor ap2c3 = new Contor("Tancodrom", 1, Contor.ContorType.APA_RECE);
+//        HibernateLocatari app = new HibernateLocatari();
 
 
-        List<Contor> listContoareAp1 = new ArrayList<>();
-        List<Contor> listContoareAp2 = new ArrayList<>();
-
-        listContoareAp1.add(ap1c1);
-        listContoareAp1.add(ap1c2);
-        listContoareAp1.add(ap1c3);
-
-        listContoareAp2.add(ap2c1);
-        listContoareAp2.add(ap2c2);
-        listContoareAp2.add(ap2c3);
-
-        Apartament apartament1 = new Apartament(1, listContoareAp1);
-        Apartament apartament2 = new Apartament(2, listContoareAp2);
-
-        List<Apartament> apartamentList = new ArrayList<Apartament>();
-
-        apartamentList.add(apartament1);
-        apartamentList.add(apartament2);
-
-        Locatar locatar1 = new Locatar("1234567891234", "Iliescu", "iliescu@mail.com");
-        Locatar locatar2 = new Locatar("9874561237895", "Dragnea", "dragnea@mail.com");
-
-        AsociatiaDeProprietari asocProp = new AsociatiaDeProprietari(apartamentList, "ROBNRIBAN");
-
-        app.insert(asocProp.registerLocatar(apartament1, locatar1));
-        app.insert(asocProp.registerLocatar(apartament1, locatar2));
-
-        // Pare ca inseram un apartament cand de fapt daca apartamentul exista aici se va face un update
-        app.insert(asocProp.unregisterLocatar(locatar1));
+//
+//        Contor ap1c1 = new Contor("Baie", 0, Contor.ContorType.GAZ);
+//        Contor ap1c2 = new Contor("Bucatarie", 0, Contor.ContorType.APA_CALDA);
+//        Contor ap1c3 = new Contor("Tancodrom", 0, Contor.ContorType.APA_RECE);
+//
+//        Contor ap2c1 = new Contor("Baie", 1, Contor.ContorType.GAZ);
+//        Contor ap2c2 = new Contor("Bucatarie", 1, Contor.ContorType.APA_CALDA);
+//        Contor ap2c3 = new Contor("Tancodrom", 1, Contor.ContorType.APA_RECE);
+//
+//
+//        List<Contor> listContoareAp1 = new ArrayList<>();
+//        List<Contor> listContoareAp2 = new ArrayList<>();
+//
+//        listContoareAp1.add(ap1c1);
+//        listContoareAp1.add(ap1c2);
+//        listContoareAp1.add(ap1c3);
+//
+//        listContoareAp2.add(ap2c1);
+//        listContoareAp2.add(ap2c2);
+//        listContoareAp2.add(ap2c3);
+//
+//        Apartament apartament1 = new Apartament(1, listContoareAp1);
+//        Apartament apartament2 = new Apartament(2, listContoareAp2);
+//
+//        List<Apartament> apartamentList = new ArrayList<Apartament>();
+//
+//        apartamentList.add(apartament1);
+//        apartamentList.add(apartament2);
+//
+//        Locatar locatar1 = new Locatar("1234567891234", "Iliescu", "iliescu@mail.com");
+//        Locatar locatar2 = new Locatar("9874561237895", "Dragnea", "dragnea@mail.com");
+//        Locatar locatar3 = new Locatar("9874561262895", "Vasile", "dragnea@mail.com");
+//
+//        AsociatiaDeProprietari asocProp = new AsociatiaDeProprietari(apartamentList, "ROBNRIBAN");
+//
+//        app.insert(asocProp.registerLocatar(apartament1, locatar1));
+//        app.insert(asocProp.registerLocatar(apartament1, locatar2));
+//
+//        // Pare ca inseram un apartament cand de fapt daca apartamentul exista aici se va face un update
+//        app.insert(asocProp.unregisterLocatar(locatar1));
 
         //Pentru optiundea de creare de asociatie noua: app.insert(nouaAsociatie)
         //Pentru optiunea de modificare asociatie ai nevoie sa scoti asociatia din baza de date: app.getAll

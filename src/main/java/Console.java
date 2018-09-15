@@ -3,13 +3,14 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Console extends Main {
-    HibernateLocatari app = new HibernateLocatari();
+    private HibernateLocatari app;
     private Scanner sc;
-    AsociatiaDeProprietari asocProp;
-    List<Apartament> apartamentList;
-    Apartament apartament;
+    private AsociatiaDeProprietari asocProp;
+    private List<Apartament> apartamentList;
+    private Apartament apartament;
 
     public Console() {
+        this.app = new HibernateLocatari();
         sc = new Scanner(System.in);
         mainMenu();
     }
@@ -18,6 +19,10 @@ public class Console extends Main {
         while (true) {
             switch (drawMainMenu()) {
                 case 1:
+                    if (asocProp == null){
+                        System.out.println("Nu aveti creata o asociatiede proprietari");
+                        break;
+                    }
                     categories();
                     app.insert(asocProp);
                     break;
@@ -68,6 +73,8 @@ public class Console extends Main {
                     break;
                 case 2:
                     remouveApartment();
+                    System.out.println("Metoda care de care nu avem nevoie");
+                    break;
                 case 3:
                     return;
                 default:
@@ -83,6 +90,12 @@ public class Console extends Main {
         List<Contor> contorList = new ArrayList<>();
         apartament = new Apartament(nrApartament, contorList);
         apartamentList.add(apartament);
+
+        for (int i = 1; i <= 3; i++) {
+            contorList.add(createContor());
+        }
+
+        app.insert(apartamentList);
     }
 
     private void remouveApartment() {
@@ -92,7 +105,7 @@ public class Console extends Main {
         while (true) {
             switch (drawAddOrRemouveLocatari()) {
                 case 1:
-//                    addLocatar();
+                    addLocatar();
                     break;
                 case 2:
                     remouveLocatar();
@@ -114,7 +127,7 @@ public class Console extends Main {
         while (true) {
             switch (drawAddOrRemouveContor()) {
                 case 1:
-                    addContor();
+                    createContor();
                     break;
                 case 2:
                     remouveContor();
@@ -126,7 +139,7 @@ public class Console extends Main {
         }
     }
 
-    private void addContor() {
+    private Contor createContor() {
         String locatie;
         Integer contorIndex;
         System.out.println("Introduceti locatia contorului:");
@@ -134,9 +147,10 @@ public class Console extends Main {
         System.out.println("Introduceti indexul contorului:");
         contorIndex = sc.nextInt();
         Contor contor = new Contor(locatie, contorIndex, enumConorType());
+        return contor;
     }
 
-    public Contor.ContorType enumConorType() {
+    private Contor.ContorType enumConorType() {
         System.out.println("Introduceti tipul contorului:");
         while (true) {
             switch (drawAlegeTipContor()) {
@@ -171,7 +185,7 @@ public class Console extends Main {
     private Integer drawCategoryMenu() {
         System.out.println("1. Apartamente");
         System.out.println("2. Locatari");
-        System.out.println("3. Contoare");
+//        System.out.println("3. Contoare");
         System.out.println("4. Return");
         Integer option = sc.nextInt();
         sc.nextLine();
@@ -179,8 +193,8 @@ public class Console extends Main {
     }
 
     private Integer drawAddOrRemouveApartments() {
-        System.out.println("1. Adauga apartament");
-        System.out.println("2. Sterge apartament");
+        System.out.println("1. Adauga apartamente");
+//        System.out.println("2. Sterge apartament");
         System.out.println("3. Return");
         Integer option = sc.nextInt();
         sc.nextLine();
@@ -198,7 +212,7 @@ public class Console extends Main {
 
     private Integer drawAddOrRemouveContor() {
         System.out.println("1. Adauga contor");
-        System.out.println("2. Sterge locatar");
+        System.out.println("2. Sterge contor");
         System.out.println("3. Return");
         Integer option = sc.nextInt();
         sc.nextLine();
