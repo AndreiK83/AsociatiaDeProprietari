@@ -32,6 +32,10 @@ public class Apartament implements Serializable {
         this.locatari = new ArrayList<Locatar>();
     }
 
+    public void setAsc(AsociatiaDeProprietari asc) {
+        this.asc = asc;
+    }
+
 
     public void addLoc(Locatar loc) {
         locatari.add(loc);
@@ -47,16 +51,6 @@ public class Apartament implements Serializable {
         } else {
             System.out.println("Locatar necunoscut");
         }
-
-       /* if (apartamentList.isEmpty()) {
-            System.out.println("Lista de locatari este goala");
-        }
-        if (apartamentList.contains(loc)) {
-            apartamentList.remove(loc);
-            System.out.println("Lista de locatari este " + locatari);
-        } else {
-            System.out.println("Nu exista astfel de locatar");
-        }*/
     }
 
     @Override
@@ -75,5 +69,10 @@ public class Apartament implements Serializable {
             return true;
         } else
             return false;
+    }
+
+    public boolean isThisNRMine(int nr){
+        System.out.println(this.nr +", " +nr);
+       return this.nr.equals(nr);
     }
 }

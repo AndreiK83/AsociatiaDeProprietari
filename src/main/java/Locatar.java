@@ -23,6 +23,10 @@ public class Locatar implements Serializable {
 
     }
 
+    public Locatar(String cnp){
+        this.cnp = cnp;
+    }
+
     public Locatar(String cnp, String nume, String email) {
         this.cnp = cnp;
         this.nume = nume;
@@ -38,7 +42,8 @@ public class Locatar implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Locatar locatar = (Locatar) o;
-        return  Objects.equals(nume, locatar.nume) &&
+        return Objects.equals(id, locatar.id) &&
+                Objects.equals(nume, locatar.nume) &&
                 Objects.equals(email, locatar.email) &&
                 Objects.equals(cnp, locatar.cnp) &&
                 Objects.equals(ap, locatar.ap);
@@ -47,7 +52,7 @@ public class Locatar implements Serializable {
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, nume, email, cnp, ap);
+        return Objects.hash(cnp);
     }
 
     @Override

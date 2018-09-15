@@ -6,12 +6,15 @@ public class Console extends Main {
     private HibernateLocatari app;
     private Scanner sc;
     private AsociatiaDeProprietari asocProp;
-    private List<Apartament> apartamentList;
-    private Apartament apartament;
+
 
     public Console() {
         this.app = new HibernateLocatari();
         sc = new Scanner(System.in);
+        List<Object> list = app.getAll(AsociatiaDeProprietari.class);
+        if (!list.isEmpty()) {
+            asocProp = (AsociatiaDeProprietari) list.get(0);
+        }
         mainMenu();
     }
 
@@ -19,25 +22,26 @@ public class Console extends Main {
         while (true) {
             switch (drawMainMenu()) {
                 case 1:
-                    if (asocProp == null){
-                        System.out.println("Nu aveti creata o asociatiede proprietari");
-                        break;
-                    }
                     categories();
                     app.insert(asocProp);
                     break;
                 case 2:
-                    String codBancar;
-                    System.out.println("Introduceti codul bancar");
-                    codBancar = sc.nextLine();
                     if (asocProp == null) {
+                        int howMany;
+                        String codBancar;
+                        System.out.println("Introduceti codul bancar");
+                        codBancar = sc.nextLine();
+                        System.out.println("Introduceti numarul apartamentelor");
+                        howMany = sc.nextInt();
+                        sc.nextLine();
+                        List<Apartament> apartamentList = creteListApartment(howMany);
                         asocProp = new AsociatiaDeProprietari(apartamentList, codBancar);
                         System.out.println("Asociatia a fost creata cu succes, cu codul bancar " + codBancar);
-                    } else {
-                        System.out.println("Exista asociatia cu codul bancar " + codBancar);
+                        app.insert(asocProp);
                     }
                     break;
                 case 3:
+                    app.exit();
                     return;
                 default:
                     System.out.println("Nu exista o astfel de optiune");
@@ -49,15 +53,12 @@ public class Console extends Main {
         while (true) {
             switch (drawCategoryMenu()) {
                 case 1:
-                    addOrRemouveApartments();
+                    addLocatar();
                     break;
                 case 2:
-                    addOrRemouveLocatari();
+                    remouveLocatar();
                     break;
                 case 3:
-                    addOrRemouveContor();
-                    break;
-                case 4:
                     return;
                 default:
                     System.out.println("Nu exista o astfel de optiune");
@@ -65,79 +66,66 @@ public class Console extends Main {
         }
     }
 
-    private void addOrRemouveApartments() {
-        while (true) {
-            switch (drawAddOrRemouveApartments()) {
-                case 1:
-                    addApartment();
-                    break;
-                case 2:
-                    remouveApartment();
-                    System.out.println("Metoda care de care nu avem nevoie");
-                    break;
-                case 3:
-                    return;
-                default:
-                    System.out.println("Va rog selectati optiunea corecta.");
+    private List<Apartament> creteListApartment(int howMany) {
+
+        List<Apartament> apList = new ArrayList<>();
+
+        for (int k = 0; k < howMany; ++k) {
+            Integer nrApartament;
+            Integer nrContoare;
+            System.out.println("Introduceti numarul apartamentului");
+            nrApartament = sc.nextInt();
+            List<Contor> contorList = new ArrayList<>();
+            Apartament apartament = new Apartament(nrApartament, contorList);
+            System.out.println("Introduceti numarul contoarelor");
+            nrContoare = sc.nextInt();
+            sc.nextLine();
+            for (int i = 1; i <= nrContoare; i++) {
+                contorList.add(createContor());
             }
+
+            apList.add(apartament);
         }
+        return apList;
     }
 
-    private void addApartment() {
-        Integer nrApartament;
-        System.out.println("Introduceti numarul apartamentului");
-        nrApartament = sc.nextInt();
-        List<Contor> contorList = new ArrayList<>();
-        apartament = new Apartament(nrApartament, contorList);
-        apartamentList.add(apartament);
-
-        for (int i = 1; i <= 3; i++) {
-            contorList.add(createContor());
-        }
-
-        app.insert(apartamentList);
-    }
-
-    private void remouveApartment() {
-    }
-
-    public void addOrRemouveLocatari() {
-        while (true) {
-            switch (drawAddOrRemouveLocatari()) {
-                case 1:
-                    addLocatar();
-                    break;
-                case 2:
-                    remouveLocatar();
-                case 3:
-                    return;
-                default:
-                    System.out.println("Va rog selectati optiunea corecta.");
-            }
-        }
-    }
 
     private void remouveLocatar() {
+        String cnpLocatar;
+
+        System.out.println("Introduceti CNP-ul locatarului");
+        cnpLocatar = sc.nextLine();
+
+        Locatar locatar = new Locatar(cnpLocatar);
+        asocProp.unregisterLocatar(locatar);
     }
 
     private void addLocatar() {
+        Integer nrApartament;
+        String cnpLocatar;
+        String numeLocatar;
+        String emailLocatar;
+
+        System.out.println("Introduceti CNP-ul locatarului");
+        cnpLocatar = sc.nextLine();
+        System.out.println("Introduceti numele locatarului");
+        numeLocatar = sc.nextLine();
+        System.out.println("Introduceti mail-ul locatarului");
+        emailLocatar = sc.nextLine();
+        Locatar locatar = new Locatar(cnpLocatar, numeLocatar, emailLocatar);
+
+        System.out.println("Introduceti numarul apartamentului");
+        nrApartament = sc.nextInt();
+        Apartament apartamentByNr = asocProp.findApartamentByNr(nrApartament);
+
+        if (apartamentByNr != null) {
+            app.insert(asocProp.registerLocatar(apartamentByNr, locatar));
+        } else {
+            System.out.println("Nu exista apartament cu acest numar");
+        }
+
     }
 
-    public void addOrRemouveContor() {
-        while (true) {
-            switch (drawAddOrRemouveContor()) {
-                case 1:
-                    createContor();
-                    break;
-                case 2:
-                    remouveContor();
-                case 3:
-                    return;
-                default:
-                    System.out.println("Va rog selectati optiunea corecta.");
-            }
-        }
-    }
 
     private Contor createContor() {
         String locatie;
@@ -146,6 +134,7 @@ public class Console extends Main {
         locatie = sc.nextLine();
         System.out.println("Introduceti indexul contorului:");
         contorIndex = sc.nextInt();
+        sc.nextLine();
         Contor contor = new Contor(locatie, contorIndex, enumConorType());
         return contor;
     }
@@ -166,13 +155,10 @@ public class Console extends Main {
         }
     }
 
-    private void remouveContor() {
-    }
-
     public Integer drawMainMenu() {
         System.out.println("\n***********************************");
         System.out.println("Operations: ");
-        System.out.println("1. Modificare ASOCIATIE");
+        System.out.println("1. Adaugare sau stergere locatari");
         System.out.println("2. Crearea asociatiei");
         System.out.println("3. Exit");
         System.out.println();
@@ -183,36 +169,8 @@ public class Console extends Main {
     }
 
     private Integer drawCategoryMenu() {
-        System.out.println("1. Apartamente");
-        System.out.println("2. Locatari");
-//        System.out.println("3. Contoare");
-        System.out.println("4. Return");
-        Integer option = sc.nextInt();
-        sc.nextLine();
-        return option;
-    }
-
-    private Integer drawAddOrRemouveApartments() {
-        System.out.println("1. Adauga apartamente");
-//        System.out.println("2. Sterge apartament");
-        System.out.println("3. Return");
-        Integer option = sc.nextInt();
-        sc.nextLine();
-        return option;
-    }
-
-    private Integer drawAddOrRemouveLocatari() {
-        System.out.println("1. Adauga locatar");
-        System.out.println("2. Sterge locatar");
-        System.out.println("3. Return");
-        Integer option = sc.nextInt();
-        sc.nextLine();
-        return option;
-    }
-
-    private Integer drawAddOrRemouveContor() {
-        System.out.println("1. Adauga contor");
-        System.out.println("2. Sterge contor");
+        System.out.println("1. Inregistrare locatar");
+        System.out.println("2. Stergere locatar");
         System.out.println("3. Return");
         Integer option = sc.nextInt();
         sc.nextLine();

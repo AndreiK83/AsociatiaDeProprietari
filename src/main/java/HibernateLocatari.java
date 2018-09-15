@@ -24,4 +24,10 @@ public class HibernateLocatari {
     public List<Object> getAll(Class type) {
         return s.createCriteria(type).list();
     }
+
+    public void exit(){
+        s.close();
+        f.close();
+    }
+
 }
