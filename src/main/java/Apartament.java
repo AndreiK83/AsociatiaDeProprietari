@@ -75,4 +75,5 @@ public class Apartament implements Serializable {
         System.out.println(this.nr +", " +nr);
        return this.nr.equals(nr);
     }
+
 }
